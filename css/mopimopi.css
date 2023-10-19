@@ -90,6 +90,8 @@ ul li:not(:last-child) {
 	background-size: 1.25rem 1.25rem;
 	background-position: bottom right;
 	background-repeat: no-repeat;
+	display: flex;
+	flex-direction: column-reverse;
 }
 nav {
 	position: relative;
