@@ -327,36 +327,46 @@ function hiddenTable() {
 	$(".toast").removeClass("on");
 	$(".toast").fadeOut(0);
 	if (init.q.autoHide && view != "settings") {
-		if (lastCombat != null) {
-			if (String(lastCombat.isActive) == "true") {
-				if (view == "history") $("div[name=history]").fadeOut(0);
-				else $("div[name=main]").fadeIn(0);
-			} else {
-				if (view == "history") $("div[name=history]").fadeIn(0);
-				else $("div[name=main]").fadeIn(0);
-				time = setTimeout(function () {
-					if (view == "history") $("div[name=history]").fadeOut(150);
-					else {
-						if ($("#blackBg").css("display") == "block")
-							$("#blackBg").trigger("click");
-						$("div[name=main]").fadeOut(150);
-					}
-					callToast("hiddenTable", 0, 3000);
-				}, init.Range.autoHideTime * 60000);
-			}
-		} else {
+		let mainBg = undefined;
+		let createTimeout = function (divName) {
+			let divRef = $(`div[name=${divName}]`);
+			let mainNavRef = $("nav[name=main]");
+			let act2LineRef = $("table[name=ACT_2line]");
 			if (view == "history") $("div[name=history]").fadeIn(0);
-			else $("div[name=notice]").fadeIn(0);
-
+			else {
+				act2LineRef.fadeIn(0);
+				divRef.fadeIn(0);
+				mainNavRef[0].style = mainBg;
+			}
 			time = setTimeout(function () {
-				if (view == "history") $("div[name=history]").fadeOut(150);
-				else {
+				if (view == "history") {
+					$("div[name=history]").fadeOut(150);
+					act2LineRef.fadeOut(150);
+					mainBg = mainNavRef[0].style;
+					mainNavRef.css("background", "none");
+				} else {
 					if ($("#blackBg").css("display") == "block")
 						$("#blackBg").trigger("click");
-					$("div[name=notice]").fadeOut(150);
+					divRef.fadeOut(150);
+					act2LineRef.fadeOut(150);
+					mainBg = mainNavRef[0].style;
+					mainNavRef.css("background", "none");
 				}
 				callToast("hiddenTable", 0, 3000);
 			}, init.Range.autoHideTime * 60000);
+		};
+
+		if (lastCombat != null) {
+			if (String(lastCombat.isActive) == "true") {
+				if (view == "history") $("div[name=history]").fadeOut(0);
+				else {
+					$("div[name=main]").fadeIn(0);
+				}
+			} else {
+				createTimeout("main");
+			}
+		} else {
+			createTimeout("notice");
 		}
 	}
 }
