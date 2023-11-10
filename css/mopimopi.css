@@ -701,7 +701,7 @@ input[type="range"] {
 .toast {
 	color: #000;
 	line-height: 1.5;
-	margin-bottom: 1rem;
+	margin-bottom: 4rem;
 	padding: 1.5rem;
 	position: absolute;
 	z-index: 2001;
