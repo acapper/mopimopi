@@ -336,7 +336,7 @@ function hiddenTable() {
 			else {
 				act2LineRef.fadeIn(0);
 				divRef.fadeIn(0);
-				mainNavRef[0]?.style = mainBg;
+				if (mainNavRef[0]) mainNavRef[0].style = mainBg;
 			}
 			time = setTimeout(function () {
 				if (view == "history") {
