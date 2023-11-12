@@ -329,29 +329,29 @@ function hiddenTable() {
 	if (init.q.autoHide && view != "settings") {
 		let mainBg = undefined;
 		let createTimeout = function (divName) {
-			let divRef = $(`div[name=${divName}]`);
-			let mainNavRef = $("nav[name=main]");
-			let act2LineRef = $("table[name=ACT_2line]");
+			const divRef = () => $(`div[name=${divName}]`);
+			const mainNavRef = () => $("nav[name=main]");
+			const act2LineRef = () => $("table[name=ACT_2line]");
 			if (view == "history") $("div[name=history]").fadeIn(0);
 			else {
-				act2LineRef.fadeIn(0);
-				divRef.fadeIn(0);
-				mainNavRef[0]?.setAttribute("style", mainBg);
+				act2LineRef().fadeIn(0);
+				divRef().fadeIn(0);
+				mainNavRef()[0]?.setAttribute("style", mainBg);
 			}
 			time = setTimeout(function () {
 				try {
 					if (view == "history") {
 						$("div[name=history]").fadeOut(150);
-						act2LineRef.fadeOut(150);
-						mainBg = mainNavRef[0]?.style;
-						mainNavRef.css("background", "none");
+						act2LineRef().fadeOut(150);
+						mainBg = mainNavRef()[0]?.style;
+						mainNavRef().css("background", "none");
 					} else {
 						if ($("#blackBg").css("display") == "block")
 							$("#blackBg").trigger("click");
-						divRef.fadeOut(150);
-						act2LineRef.fadeOut(150);
-						mainBg = mainNavRef[0]?.style;
-						mainNavRef.css("background", "none");
+						divRef().fadeOut(150);
+						act2LineRef().fadeOut(150);
+						mainBg = mainNavRef()[0]?.style;
+						mainNavRef().css("background", "none");
 					}
 					callToast("hiddenTable", 0, 3000);
 				} catch (err) {
