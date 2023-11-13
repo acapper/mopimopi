@@ -352,7 +352,7 @@ function hiddenTable() {
 					mainBg = mainNavRef()[0]?.style;
 					mainNavRef().css("background", "none");
 
-					callToast("hiddenTable", 0, 5000);
+					callToast("hiddenTable", 0, 60000);
 				} catch (err) {
 					console.error(err);
 				}
