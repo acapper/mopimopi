@@ -327,7 +327,6 @@ function hiddenTable() {
 	$(".toast").removeClass("on");
 	$(".toast").fadeOut(0);
 	if (init.q.autoHide && view != "settings") {
-		let mainBg = undefined;
 		let createTimeout = function (divName) {
 			const divRef = () => $(`div[name=${divName}]`);
 			const mainNavRef = () => $("nav[name=main]");
@@ -337,25 +336,19 @@ function hiddenTable() {
 			else act2LineRef().css("opacity", 1);
 
 			act2LineRef().css("opacity", 1);
-			mainNavRef()[0]?.setAttribute("style", mainBg);
 
 			time = setTimeout(function () {
-				try {
-					if (view == "history") {
-						$("div[name=history]").fadeOut(150);
-					} else {
-						if ($("#blackBg").css("display") == "block")
-							$("#blackBg").trigger("click");
-						divRef().fadeOut(150);
-					}
-					act2LineRef().css("opacity", 0);
-					mainBg = mainNavRef()[0]?.style;
-					mainNavRef().css("background", "none");
-
-					callToast("hiddenTable", 0, 60000);
-				} catch (err) {
-					console.error(err);
+				if (view == "history") {
+					$("div[name=history]").fadeOut(150);
+				} else {
+					if ($("#blackBg").css("display") == "block")
+						$("#blackBg").trigger("click");
+					divRef().fadeOut(150);
 				}
+				act2LineRef().css("opacity", 0);
+				mainNavRef().css("background", "none");
+
+				callToast("hiddenTable", 0, 60000);
 			}, init.Range.autoHideTime * 1000);
 		};
 
@@ -1641,6 +1634,7 @@ function ui() {
 				"-webkit-calc(20% + 1px)"
 			);
 	}
+	$("[name=ACT_2line]").css("opacity", 1);
 	var img = "";
 	if (init.q.overlayBg) img = init.q.overlayBgImg;
 	$("html").css({
