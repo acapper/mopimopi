@@ -348,8 +348,8 @@ function hiddenTable() {
 				act2LineRef().css("opacity", 0);
 				mainNavRef().css("background", "none");
 
-				callToast("hiddenTable", 0, 60000);
-			}, init.Range.autoHideTime * 1000);
+				callToast("hiddenTable", 0, 1000);
+			}, init.Range.autoHideTime * 60000);
 		};
 
 		if (lastCombat != null) {
