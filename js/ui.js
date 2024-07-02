@@ -55,6 +55,8 @@ function addOption() {
 		"size24TableIdxWd",
 	];
 	var colorVal = [
+		"VPR",
+		"PCT",
 		"RPR",
 		"SGE",
 		"DNC",
@@ -75,9 +77,6 @@ function addOption() {
 		init.ColData = Mopi2.ColData;
 		init.Order = Mopi2.Order;
 	}
-
-	//임시기간에만 실행
-	if (init["Color"]["RPR"] == "3A3A35") init["Color"]["RPR"] = "EADD6F";
 
 	SubOption();
 }
